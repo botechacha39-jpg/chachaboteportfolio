@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cha-Cha Portfolio — Creative Designer & Developer</title>
+  <meta name="description" content="Modern, chic aesthetic pink portfolio of Cha-Cha featuring creative UI/UX design, frontend engineering, and interactive showcases." />
+  <meta property="og:title" content="Cha-Cha Bote — Creative Designer & Developer" />
+  <meta property="og:description" content="Modern, chic aesthetic pink portfolio of Cha-Cha featuring creative UI/UX design, frontend engineering, and interactive showcases." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Plus Jakarta Sans, Outfit, Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            pink: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              200: '#fbcfe8',
+              300: '#f472b6',
+              400: '#f43f5e',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+              800: '#9d174d',
+              900: '#831843',
+              950: '#500724',
+            },
+            rose: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #fff5f7;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(244, 114, 182, 0.22);
+      --text-main: #3d1a29;
+      --text-muted: #7e4b60;
+    }
+
+    .dark {
+      --bg-color: #12060e;
+      --card-bg: rgba(30, 11, 26, 0.8);
+      --card-border: rgba(244, 114, 182, 0.2);
+      --text-main: #fdf2f8;
+      --text-muted: #d8a8be;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
+    }
+
+    /* Floating Blobs Animation */
+    @keyframes float-slow {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(16px, -20px) scale(1.05); }
+    }
+
+    @keyframes float-reverse {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(-20px, 16px) scale(0.95); }
+    }
+
+    .animate-blob-1 { animation: float-slow 7s infinite ease-in-out; }
+    .animate-blob-2 { animation: float-reverse 9s infinite ease-in-out; }
+
+    /* Custom Pink Glassmorphism */
+    .glass-nav {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .glass-card-pink {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+    }
+
+    /* Cursor Glow Follower */
+    #cursor-glow {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.14) 0%, rgba(251, 113, 133, 0.05) 50%, transparent 80%);
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease-out;
+      z-index: 9999;
+    }
+
+    /* Scroll progress ring */
+    .progress-ring-circle {
+      transition: stroke-dashoffset 0.1s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    /* Custom pink scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fdf2f8;
+    }
+    .dark ::-webkit-scrollbar-track {
+      background: #190a16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f472b6;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ec4899;
+    }
+
+    /* Floating Heart Emojis */
+    @keyframes float-particle {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.8) rotate(0deg);
+      }
+      50% {
+        opacity: 0.95;
+        transform: translateY(-90px) scale(1.3) rotate(18deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-180px) scale(0.9) rotate(-18deg);
+      }
+    }
+    .floating-sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      animation: float-particle 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-pink-300 selection:text-pink-950">
+
+  <!-- Subtle Pink Mouse Follower Glow -->
+  <div id="cursor-glow" class="hidden md:block"></div>
+
+  <!-- Container for interactive floating particles -->
+  <div id="particles-container"></div>
+
+  <!-- ======================================================== -->
+  <!-- 1. NAVIGATION BAR -->
+  <!-- ======================================================== -->
+  <nav class="fixed top-0 left-0 w-full z-50 glass-nav bg-pink-50/85 dark:bg-[#150711]/85 border-b border-pink-200/50 dark:border-pink-900/40 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center gap-8">
+      
+      <!-- Zone 1: Wordmark Logo -->
+      <a href="#home" class="font-display font-bold text-xl tracking-tight text-pink-950 dark:text-pink-50 hover:opacity-85 transition-opacity flex items-center gap-2 whitespace-nowrap shrink-0 group">
+        <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-400 to-rose-300 flex items-center justify-center text-white text-sm shadow-xs group-hover:scale-105 transition-transform">
+      
+        </span>
+        <span>
+          Cha-cha <span class="font-serif italic text-pink-500 font-normal">Bote</span>
+        </span>
+      </a>
+
+      <!-- Zone 2: Navigation Links -->
+      <ul id="desktop-nav" class="hidden md:flex items-center gap-8 text-sm font-medium text-pink-900/80 dark:text-pink-200/80">
+        <li><a href="#home" class="nav-item transition-colors hover:text-pink-600 dark:hover:text-pink-300 py-1 border-b-2 border-transparent">Home</a></li>
+        <li><a href="#about" class="nav-item transition-colors hover:text-pink-600 dark:hover:text-pink-300 py-1 border-b-2 border-transparent">About</a></li>
+        <li><a href="#projects" class="nav-item transition-colors hover:text-pink-600 dark:hover:text-pink-300 py-1 border-b-2 border-transparent">Projects</a></li>
+        <li><a href="#certificates" class="nav-item transition-colors hover:text-pink-600 dark:hover:text-pink-300 py-1 border-b-2 border-transparent">Certificates</a></li>
+        <li><a href="#gallery" class="nav-item transition-colors hover:text-pink-600 dark:hover:text-pink-300 py-1 border-b-2 border-transparent">Gallery</a></li>
+        <li><a href="#contact" class="nav-item transition-colors hover:text-pink-600 dark:hover:text-pink-300 py-1 border-b-2 border-transparent">Contact</a></li>
+      </ul>
+
+      <!-- Zone 3: Interactive Controls (Love Button, Theme Switcher & Mobile Menu) -->
+      <div class="flex items-center gap-3 shrink-0">
+        
+        <!-- Interactive Love / Sparkles Counter Button -->
+        <button id="love-btn" onclick="triggerLoveParticle(event)" title="Send love & sparkles!" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-pink-100 hover:bg-pink-200 dark:bg-pink-950/60 dark:hover:bg-pink-900/70 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-800 transition-all hover:scale-105 active:scale-95 cursor-pointer">
+          <i class="fas fa-heart text-pink-500 animate-pulse"></i>
+          <span id="love-count" class="font-mono tabular-nums">128</span>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button id="theme-toggle" aria-label="Toggle Theme" class="p-2.5 rounded-full bg-white dark:bg-[#200d1c] text-pink-700 dark:text-pink-200 border border-pink-200/60 dark:border-pink-800/50 hover:bg-pink-50 dark:hover:bg-pink-950/50 shadow-xs transition-all hover:scale-105 cursor-pointer">
+          <i id="theme-icon" class="fas fa-moon text-base text-pink-600"></i>
+        </button>
+
+        <!-- Primary Action CTA -->
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5 whitespace-nowrap shrink-0">
+          <i class="fas fa-sparkles"></i>
+          <span>Let's Talk</span>
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="menu-toggle" aria-label="Toggle Navigation" class="md:hidden p-2 text-pink-950 dark:text-pink-100 focus:outline-none">
+          <i id="menu-icon" class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden glass-nav bg-pink-50/95 dark:bg-[#150711]/95 border-b border-pink-200/60 dark:border-pink-900/60 px-6 py-5 flex-col gap-4 text-sm font-medium text-pink-950 dark:text-pink-100">
+      <a href="#home" class="mobile-nav-link py-2 border-b border-pink-100 dark:border-pink-950/50">Home</a>
+      <a href="#about" class="mobile-nav-link py-2 border-b border-pink-100 dark:border-pink-950/50">About Me</a>
+      <a href="#projects" class="mobile-nav-link py-2 border-b border-pink-100 dark:border-pink-950/50">Featured Projects</a>
+      <a href="#certificates" class="mobile-nav-link py-2 border-b border-pink-100 dark:border-pink-950/50">Certificates</a>
+      <a href="#gallery" class="mobile-nav-link py-2 border-b border-pink-100 dark:border-pink-950/50">Project Gallery</a>
+      <a href="#contact" class="mobile-nav-link py-2">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ======================================================== -->
+  <!-- 2. HERO SECTION -->
+  <!-- ======================================================== -->
+  <section id="home" class="relative min-h-[92vh] pt-28 pb-16 flex flex-col justify-center px-6 max-w-7xl mx-auto">
+    <!-- Ambient Blur Background Blobs -->
+    <div class="absolute top-16 left-4 w-72 h-72 bg-pink-300/35 dark:bg-pink-900/20 rounded-full blur-3xl pointer-events-none animate-blob-1"></div>
+    <div class="absolute bottom-20 right-6 w-96 h-96 bg-rose-200/40 dark:bg-rose-950/30 rounded-full blur-3xl pointer-events-none animate-blob-2"></div>
+
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full relative z-10 my-auto">
+      
+      <!-- Left Content Column -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-pink-100/80 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-800/60 shadow-xs">
+          <span class="animate-spin text-sm"></span>
+          <span>Welcome to my digital atelier · 2026</span>
+        </span>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-pink-950 dark:text-pink-50 leading-[1.14]">
+          Creative <span class="font-serif italic text-pink-500 font-normal" id="typing-text">Designer</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-pink-900/75 dark:text-pink-200/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          I build thoughtful, dreamy, and delightfully modern web experiences. I blend soft pink aesthetics, elegant typography, and bulletproof frontend engineering.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-3.5 justify-center lg:justify-start pt-2">
+          <a href="#projects" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 hover:from-pink-600 hover:to-rose-500 text-white font-medium text-sm transition-all shadow-xs hover:shadow-md hover:-translate-y-0.5">
+            <span>Explore Works</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-card-pink text-pink-900 dark:text-pink-100 hover:bg-pink-100/70 dark:hover:bg-pink-950/60 font-medium text-sm transition-all hover:-translate-y-0.5">
+            <i class="fas fa-paper-plane text-xs text-pink-500"></i>
+            <span>Get in Touch</span>
+          </a>
+          <button onclick="triggerLoveParticle(event)" class="inline-flex items-center gap-1.5 px-4 py-3.5 rounded-full border border-pink-300/60 dark:border-pink-800/60 hover:bg-pink-100/50 dark:hover:bg-pink-950/40 text-pink-700 dark:text-pink-300 text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer">
+            <i class="fas fa-heart text-pink-500"></i>
+            <span>Send Sparkles</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Visual Avatar Column -->
+      <div class="lg:col-span-5 flex justify-center relative">
+        <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-92 md:h-92 flex items-center justify-center">
+          <!-- Animated Background Blobs -->
+          <div class="absolute top-0 left-0 w-56 h-56 bg-pink-300/60 dark:bg-pink-900/40 rounded-full blur-2xl animate-blob-1"></div>
+          <div class="absolute bottom-0 right-0 w-60 h-60 bg-rose-200/60 dark:bg-rose-950/40 rounded-full blur-2xl animate-blob-2"></div>
+          
+          <!-- Avatar Card -->
+          <div class="relative z-10 w-64 h-64 sm:w-72 sm:h-72 rounded-3xl glass-card-pink p-3 shadow-xl hover:rotate-1 transition-transform duration-500 group overflow-hidden">
+            <div class="w-full h-full rounded-2xl overflow-hidden relative bg-gradient-to-tr from-pink-200 via-rose-100 to-pink-100 dark:from-pink-950 dark:to-plum-900 flex items-center justify-center text-7xl">
+              <!-- Avatar Photo or Fallback -->
+              <img 
+                src="profile.jpg" 
+                alt="Cha-Cha Bote"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="hidden w-full h-full flex-col items-center justify-center text-pink-500">
+                <span class="text-6xl animate-bounce"></span>
+                <span class="text-xs font-bold font-display mt-2 text-pink-900 dark:text-pink-100">Cha-Cha</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Playful Floating Badges -->
+          <div class="absolute -top-3 -right-3 z-20 glass-card-pink px-3.5 py-1.5 rounded-2xl shadow-sm text-xs font-semibold text-pink-800 dark:text-pink-200 flex items-center gap-1.5">
+            <i class="fas fa-sparkles text-pink-500"></i>
+            <span>Pixel Perfection</span>
+          </div>
+          <div class="absolute -bottom-4 -left-3 z-20 glass-card-pink px-3.5 py-1.5 rounded-2xl shadow-sm text-xs font-semibold text-pink-800 dark:text-pink-200 flex items-center gap-1.5">
+            <span>Clean Code & Motion</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Full-Width 4-Column KPI Strip Below Split -->
+    <div class="mt-16 pt-8 border-t border-pink-200/60 dark:border-pink-900/50 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+      <div class="space-y-1">
+        <div class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-pink-600 dark:text-pink-400 tabular-nums">28+</div>
+        <div class="text-xs sm:text-sm font-medium text-pink-900/70 dark:text-pink-200/70">Delivered Projects</div>
+      </div>
+      <div class="space-y-1">
+        <div class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-pink-600 dark:text-pink-400 tabular-nums">99.8%</div>
+        <div class="text-xs sm:text-sm font-medium text-pink-900/70 dark:text-pink-200/70">Client Happiness</div>
+      </div>
+      <div class="space-y-1">
+        <div class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-pink-600 dark:text-pink-400 tabular-nums">5</div>
+        <div class="text-xs sm:text-sm font-medium text-pink-900/70 dark:text-pink-200/70">Industry Certifications</div>
+      </div>
+      <div class="space-y-1">
+        <div class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-pink-600 dark:text-pink-400 tabular-nums">4+</div>
+        <div class="text-xs sm:text-sm font-medium text-pink-900/70 dark:text-pink-200/70">Years Experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 3. ABOUT SECTION -->
+  <!-- ======================================================== -->
+  <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="mb-14 space-y-2">
+      <div class="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-pink-500">
+        <i class="fas fa-sparkles"></i>
+        <span>My Creative Identity</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-pink-950 dark:text-pink-50">
+        About Me <span class="font-serif italic font-normal text-pink-500">· The Story</span>
+      </h2>
+      <p class="text-sm sm:text-base text-pink-900/70 dark:text-pink-200/70 max-w-xl">
+        Blending modern frontend engineering with a playful, poetic touch.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <!-- Philosophy Card -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="glass-card-pink rounded-3xl p-8 space-y-5 shadow-xs relative overflow-hidden">
+          <div class="flex items-center gap-3 text-pink-600 dark:text-pink-400">
+            <span class="p-2.5 rounded-2xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-300">
+              <i class="fas fa-compass text-xl"></i>
+            </span>
+            <h3 class="text-xl font-bold font-display text-pink-950 dark:text-pink-50">Designing with Softness & Intention</h3>
+          </div>
+          <p class="text-sm sm:text-base text-pink-900/80 dark:text-pink-100/80 leading-relaxed">
+            I believe minimalism and femininity are powerful design languages. It is not about superficial fluff—it's about emotional connection, intuitive ergonomics, purposeful motion, and making technology feel gentle, warm, and inviting.
+          </p>
+          <div class="pt-3 border-t border-pink-200/50 dark:border-pink-900/40 text-xs text-pink-800/70 dark:text-pink-200/70 flex items-center justify-between">
+            <span>Frontend Craft · UI/UX Strategy</span>
+            <span class="font-mono">Manila, PH 🇵🇭</span>
+          </div>
+        </div>
+
+        <!-- 4 Creative DNA Fun Facts -->
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="glass-card-pink rounded-2xl p-5 shadow-xs hover:border-pink-300 dark:hover:border-pink-700 transition-all hover:-translate-y-1">
+            <div class="text-2xl mb-2"></div>
+            <h4 class="text-sm font-bold font-display text-pink-950 dark:text-pink-100">Daily Fuel</h4>
+            <p class="text-xs text-pink-900/70 dark:text-pink-200/70 mt-1 leading-relaxed">Iced strawberry matcha latte with oat milk</p>
+          </div>
+          <div class="glass-card-pink rounded-2xl p-5 shadow-xs hover:border-pink-300 dark:hover:border-pink-700 transition-all hover:-translate-y-1">
+            <div class="text-2xl mb-2"></div>
+            <h4 class="text-sm font-bold font-display text-pink-950 dark:text-pink-100">Aesthetic Setup</h4>
+            <p class="text-xs text-pink-900/70 dark:text-pink-200/70 mt-1 leading-relaxed">Custom pastel pink mechanical keyboard & dual display</p>
+          </div>
+          <div class="glass-card-pink rounded-2xl p-5 shadow-xs hover:border-pink-300 dark:hover:border-pink-700 transition-all hover:-translate-y-1">
+            <div class="text-2xl mb-2"></div>
+            <h4 class="text-sm font-bold font-display text-pink-950 dark:text-pink-100">Design Heart</h4>
+            <p class="text-xs text-pink-900/70 dark:text-pink-200/70 mt-1 leading-relaxed">Clean lines, gentle contrasts, joyful micro-animations</p>
+          </div>
+          <div class="glass-card-pink rounded-2xl p-5 shadow-xs hover:border-pink-300 dark:hover:border-pink-700 transition-all hover:-translate-y-1">
+            <div class="text-2xl mb-2"></div>
+            <h4 class="text-sm font-bold font-display text-pink-950 dark:text-pink-100">Focus Playlist</h4>
+            <p class="text-xs text-pink-900/70 dark:text-pink-200/70 mt-1 leading-relaxed">Lofi beats, soft indie pop, and Parisian jazz</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Card -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="glass-card-pink rounded-3xl p-8 shadow-xs space-y-6">
+          <div class="flex items-center gap-3 text-pink-600 dark:text-pink-400">
+            <span class="p-2.5 rounded-2xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-300">
+              <i class="fas fa-layer-group text-xl"></i>
+            </span>
+            <h3 class="text-xl font-bold font-display text-pink-950 dark:text-pink-50">Core Skills & Toolkit</h3>
+          </div>
+
+          <!-- Skills Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>UI/UX Design</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>HTML5 & CSS3</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>JavaScript (ES6+)</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>Tailwind CSS</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>Responsive Web</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>Figma & Prototyping</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>Micro-Motion</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>Accessibility (WCAG)</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+            <div class="px-3.5 py-2.5 rounded-xl bg-white/70 dark:bg-pink-950/40 border border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-pink-900 dark:text-pink-100 flex items-center justify-between hover:border-pink-400 hover:bg-pink-50/80 transition-all">
+              <span>Design Systems</span>
+              <span class="text-pink-400 text-[10px]">✦</span>
+            </div>
+          </div>
+
+          <!-- Working Principles -->
+          <div class="pt-6 border-t border-pink-200/50 dark:border-pink-900/40 space-y-3">
+            <h4 class="text-xs font-semibold tracking-wider uppercase text-pink-500">Core Principles</h4>
+            <div class="grid sm:grid-cols-2 gap-3 text-xs text-pink-900/80 dark:text-pink-100/80">
+              <div class="flex items-center gap-2"><span class="text-pink-400">♥</span><span>Empathy-First Interaction</span></div>
+              <div class="flex items-center gap-2"><span class="text-pink-400">♥</span><span>Accessible & High-Contrast (WCAG AA)</span></div>
+              <div class="flex items-center gap-2"><span class="text-pink-400">♥</span><span>Clean Modular Code Architecture</span></div>
+              <div class="flex items-center gap-2"><span class="text-pink-400">♥</span><span>Playful, Purposeful Micro-Motion</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 4. PROJECTS SECTION -->
+  <!-- ======================================================== -->
+  <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="mb-14 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-pink-500">
+          <i class="fas fa-sparkles"></i>
+          <span>Curated Works</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-pink-950 dark:text-pink-50">
+          Featured Projects <span class="font-serif italic font-normal text-pink-500">· Selected 2024–2026</span>
+        </h2>
+        <p class="text-sm sm:text-base text-pink-900/70 dark:text-pink-200/70 max-w-xl">
+          A boutique collection of digital storefronts, aesthetic dashboards, and mindfulness tools.
+        </p>
+      </div>
+      <div class="text-xs text-pink-700/80 dark:text-pink-300/80 font-mono">
+        Showing 4 Flagship Case Studies
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      
+      <!-- Project 1: Blush & Bloom -->
+      <div class="glass-card-pink rounded-3xl p-7 flex flex-col justify-between hover:-translate-y-2 transition-all duration-300 group shadow-xs hover:shadow-xl">
+        <div>
+          <div class="relative aspect-video rounded-2xl overflow-hidden mb-6 bg-pink-100 dark:bg-pink-950 border border-pink-200/40 dark:border-pink-900/40">
+            <img 
+              src="proj1.jpg" 
+              alt="Blush & Bloom" 
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="hidden w-full h-full flex-col items-center justify-center bg-gradient-to-tr from-pink-200 to-rose-100 text-pink-500 text-5xl">
+              
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-4 text-white">
+              <span class="text-xs font-medium tracking-wide">+68% Conversion Rate · 1.2s Load</span>
+              <span class="p-2 rounded-full bg-white/20 backdrop-blur-md"><i class="fas fa-eye"></i></span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs font-medium text-pink-600 dark:text-pink-400 mb-2.5">
+            <span>Lead UI/UX & Frontend</span>
+            <span aria-hidden="true">·</span>
+            <span>2025</span>
+            <span aria-hidden="true">·</span>
+            <span>AI Development</span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-bold font-display text-pink-950 dark:text-pink-50 mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+            Chabita AI
+          </h3>
+          <p class="text-sm text-pink-900/75 dark:text-pink-200/75 leading-relaxed mb-4">
+           An AI-powered digital assistant
+          </p>
+
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-pink-800/60 dark:text-pink-300/60 font-mono mb-6">
+            <span>HTML5</span>·<span>Tailwind CSS</span>·<span>JavaScript</span>·<span>Interactive Cart</span>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-pink-200/50 dark:border-pink-900/40 flex items-center justify-between">
+          <button onclick="openModal('Blush & Bloom — Botanical Skincare', 'A bespoke luxury digital storefront built for an organic botanical skincare brand. Features an interactive ingredient drawer, fluid slide-over shopping cart, and soft pink rosewater aesthetics.')" class="w-fit text-xs font-semibold text-pink-700 dark:text-pink-300 hover:text-pink-950 dark:hover:text-white flex items-center gap-2 group-hover:translate-x-1 transition-all cursor-pointer">
+            Inspect Case Study <i class="fas fa-arrow-right text-[10px]"></i>
+          </button>
+          <span class="text-xs font-medium text-pink-500 font-mono">01</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- ======================================================== -->
+<!-- 5. CERTIFICATES SECTION -->
+<!-- ======================================================== -->
+<section id="certificates" class="py-24 px-6 max-w-7xl mx-auto">
+
+  <!-- Section Heading -->
+  <div class="mb-14 space-y-3">
+    <div class="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-pink-500">
+      <i class="fas fa-sparkles"></i>
+      <span>My Achievements</span>
+    </div>
+
+    <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-pink-950 dark:text-pink-50">
+      My Certificates
+      <span class="font-serif italic font-normal text-pink-500">· Achievements</span>
+    </h2>
+
+    <p class="text-sm sm:text-base text-pink-900/70 dark:text-pink-200/70 max-w-xl">
+      A collection of my certificates, training programs, seminars, and learning achievements.
+    </p>
+  </div>
+
+  <!-- Certificate Cards -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- CERTIFICATE 1 -->
+    <article class="glass-card-pink rounded-3xl p-5 shadow-xs hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+
+      <!-- Certificate Image -->
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-pink-100 dark:bg-pink-950 border border-pink-200/60 dark:border-pink-900/50">
+
+        <img
+          src="cert.jpg"
+          alt="Certificate 1"
+          class="certificate-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+
+        <!-- Fallback if image is missing -->
+        <div class="hidden w-full h-full flex-col items-center justify-center text-pink-500">
+          <i class="fas fa-certificate text-5xl mb-3"></i>
+          <span class="text-sm font-semibold">Add Certificate Image</span>
+        </div>
+
+        <!-- Image Overlay -->
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-1.jpg', 'Certificate 1')"
+          class="absolute inset-0 bg-pink-950/50 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 font-semibold text-sm"
+          aria-label="View Certificate 1"
+        >
+          <i class="fas fa-expand"></i>
+          View Certificate
+        </button>
+      </div>
+
+      <!-- Certificate Information -->
+      <div class="space-y-3">
+        <span class="inline-flex px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300 text-[11px] font-semibold">
+          Training / Seminar
+        </span>
+
+        <h3 class="text-xl font-bold font-display text-pink-950 dark:text-pink-50">
+         DEVCON BUKIDNON CERTIFICATE
+        </h3>
+
+        <p class="text-sm text-pink-900/70 dark:text-pink-200/70">
+          Issued by: DEVCON Bukidnon
+        </p>
+
+        <p class="text-xs text-pink-600 dark:text-pink-400">
+          <i class="far fa-calendar mr-1"></i>
+          Year: 2026
+        </p>
+      </div>
+
+      <div class="mt-5 pt-4 border-t border-pink-200/50 dark:border-pink-900/40 flex justify-between items-center">
+        <span class="text-xs text-pink-800/60 dark:text-pink-300/60">
+          Achievement 01
+        </span>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-1.jpg', 'Certificate Title 1')"
+          class="text-xs font-semibold text-pink-600 dark:text-pink-400 hover:text-pink-800 transition-colors"
+        >
+          View Certificate <i class="fas fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </article>
+
+
+    <!-- CERTIFICATE 2 -->
+    <article class="glass-card-pink rounded-3xl p-5 shadow-xs hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-pink-100 dark:bg-pink-950 border border-pink-200/60 dark:border-pink-900/50">
+
+        <img
+          src="cert2.jpg"
+          alt="Certificate 2"
+          class="certificate-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+
+        <div class="hidden w-full h-full flex-col items-center justify-center text-pink-500">
+          <i class="fas fa-award text-5xl mb-3"></i>
+          <span class="text-sm font-semibold">Add Certificate Image</span>
+        </div>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-2.jpg', 'Certificate 2')"
+          class="absolute inset-0 bg-pink-950/50 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 font-semibold text-sm"
+          aria-label="View Certificate 2"
+        >
+          <i class="fas fa-expand"></i>
+          View Certificate
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <span class="inline-flex px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300 text-[11px] font-semibold">
+          Workshop
+        </span>
+
+        <h3 class="text-xl font-bold font-display text-pink-950 dark:text-pink-50">
+          DEANS LIST 2024-2025 FIRST SEMESTER
+        </h3>
+
+        <p class="text-sm text-pink-900/70 dark:text-pink-200/70">
+          Issued by: Torres Capitol College, Inc.
+        </p>
+
+        <p class="text-xs text-pink-600 dark:text-pink-400">
+          <i class="far fa-calendar mr-1"></i>
+          Year: 2024-2025
+        </p>
+      </div>
+
+      <div class="mt-5 pt-4 border-t border-pink-200/50 dark:border-pink-900/40 flex justify-between items-center">
+        <span class="text-xs text-pink-800/60 dark:text-pink-300/60">
+          Achievement 02
+        </span>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-2.jpg', 'Certificate Title 2')"
+          class="text-xs font-semibold text-pink-600 dark:text-pink-400 hover:text-pink-800 transition-colors"
+        >
+          View Certificate <i class="fas fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </article>
+
+
+    <!-- CERTIFICATE 3 -->
+    <article class="glass-card-pink rounded-3xl p-5 shadow-xs hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-pink-100 dark:bg-pink-950 border border-pink-200/60 dark:border-pink-900/50">
+
+        <img
+          src="cert3.jpg"
+          alt="Certificate 1"
+          class="certificate-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+
+        <div class="hidden w-full h-full flex-col items-center justify-center text-pink-500">
+          <i class="fas fa-graduation-cap text-5xl mb-3"></i>
+          <span class="text-sm font-semibold">Add Certificate Image</span>
+        </div>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-3.jpg', 'Certificate 3')"
+          class="absolute inset-0 bg-pink-950/50 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 font-semibold text-sm"
+          aria-label="View Certificate 3"
+        >
+          <i class="fas fa-expand"></i>
+          View Certificate
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <span class="inline-flex px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300 text-[11px] font-semibold">
+          Certification
+        </span>
+
+        <h3 class="text-xl font-bold font-display text-pink-950 dark:text-pink-50">
+          DEAN'S LIST 2024-2025 SECOND SEMESTER
+        </h3>
+
+        <p class="text-sm text-pink-900/70 dark:text-pink-200/70">
+          Issued by: Torres Capitol College, Inc.
+        </p>
+
+        <p class="text-xs text-pink-600 dark:text-pink-400">
+          <i class="far fa-calendar mr-1"></i>
+          Year: 2024-2025
+        </p>
+      </div>
+
+      <div class="mt-5 pt-4 border-t border-pink-200/50 dark:border-pink-900/40 flex justify-between items-center">
+        <span class="text-xs text-pink-800/60 dark:text-pink-300/60">
+          Achievement 03
+        </span>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-3.jpg', 'Certificate Title 3')"
+          class="text-xs font-semibold text-pink-600 dark:text-pink-400 hover:text-pink-800 transition-colors"
+        >
+          View Certificate <i class="fas fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </article>
+
+     <!-- CERTIFICATE 3 -->
+    <article class="glass-card-pink rounded-3xl p-5 shadow-xs hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-pink-100 dark:bg-pink-950 border border-pink-200/60 dark:border-pink-900/50">
+
+        <img
+          src="cert3.jpg"
+          alt="Certificate 1"
+          class="certificate-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+
+        <div class="hidden w-full h-full flex-col items-center justify-center text-pink-500">
+          <i class="fas fa-graduation-cap text-5xl mb-3"></i>
+          <span class="text-sm font-semibold">Add Certificate Image</span>
+        </div>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-3.jpg', 'Certificate 3')"
+          class="absolute inset-0 bg-pink-950/50 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 font-semibold text-sm"
+          aria-label="View Certificate 3"
+        >
+          <i class="fas fa-expand"></i>
+          View Certificate
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <span class="inline-flex px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300 text-[11px] font-semibold">
+          Certification
+        </span>
+
+        <h3 class="text-xl font-bold font-display text-pink-950 dark:text-pink-50">
+          DEAN'S LIST 2025-2026 FIRST SEMESTER
+        </h3>
+
+        <p class="text-sm text-pink-900/70 dark:text-pink-200/70">
+          Issued by: Torres Capitol College, Inc.
+        </p>
+
+        <p class="text-xs text-pink-600 dark:text-pink-400">
+          <i class="far fa-calendar mr-1"></i>
+          Year: 2025-2026
+        </p>
+      </div>
+
+      <div class="mt-5 pt-4 border-t border-pink-200/50 dark:border-pink-900/40 flex justify-between items-center">
+        <span class="text-xs text-pink-800/60 dark:text-pink-300/60">
+          Achievement 04
+        </span>
+
+        <button
+          type="button"
+          onclick="viewCertificate('images/certificate-3.jpg', 'Certificate Title 3')"
+          class="text-xs font-semibold text-pink-600 dark:text-pink-400 hover:text-pink-800 transition-colors"
+        >
+          View Certificate <i class="fas fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CERTIFICATE IMAGE PREVIEW MODAL -->
+<div
+  id="certificateModal"
+  class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-8 bg-pink-950/80 backdrop-blur-md"
+  onclick="if(event.target === this) closeCertificate()"
+>
+  <div class="relative w-full max-w-5xl max-h-full flex flex-col items-center">
+
+    <button
+      type="button"
+      onclick="closeCertificate()"
+      class="absolute -top-12 right-0 p-3 rounded-full bg-white/15 hover:bg-white/30 text-white transition-colors"
+      aria-label="Close certificate preview"
+    >
+      <i class="fas fa-times text-xl"></i>
+    </button>
+
+    <h3
+      id="certificateModalTitle"
+      class="text-white text-lg font-bold mb-4 text-center"
+    >
+      Certificate Preview
+    </h3>
+
+    <div class="w-full max-h-[75vh] overflow-auto rounded-2xl bg-white/10 flex items-center justify-center">
+      <img
+        id="certificateModalImage"
+        src=""
+        alt="Full certificate preview"
+        class="max-w-full max-h-[75vh] object-contain rounded-xl"
+      />
+    </div>
+
+    <p class="text-pink-100 text-xs mt-4 text-center">
+      Press Escape or click outside the image to close.
+    </p>
+  </div>
+</div>
+
+
+  <!-- ======================================================== -->
+  <!-- 7. CONTACT SECTION -->
+  <!-- ======================================================== -->
+  <section id="contact" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="mb-14 space-y-2">
+      <div class="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-pink-500">
+        <i class="fas fa-sparkles"></i>
+        <span>Start a Conversation</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-pink-950 dark:text-pink-50">
+        Get In Touch <span class="font-serif italic font-normal text-pink-500">· Let's Create</span>
+      </h2>
+      <p class="text-sm sm:text-base text-pink-900/70 dark:text-pink-200/70 max-w-xl">
+        Have a project in mind, a creative vision, or just want to say hello? I would love to hear from you.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Direct Info -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="glass-card-pink rounded-3xl p-8 shadow-xs space-y-6">
+          <h3 class="text-2xl font-bold font-display text-pink-950 dark:text-pink-50">Direct Channels</h3>
+          <p class="text-sm text-pink-900/75 dark:text-pink-200/75 leading-relaxed">
+            I am available for select freelance commissions, full-stack design systems, and frontend opportunities for 2026.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <!-- Email with 1-click Copy -->
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-white/70 dark:bg-pink-950/50 border border-pink-200/60 dark:border-pink-900/50">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300 flex items-center justify-center">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <span class="text-[10px] uppercase tracking-wider text-pink-500 block font-semibold">Email Address</span>
+                  <span id="contact-email" class="text-xs sm:text-sm font-semibold text-pink-950 dark:text-pink-100 font-mono">chachabote2@gmail.com</span>
+                </div>
+              </div>
+              <button onclick="copyEmail()" class="p-2 rounded-xl text-pink-600 dark:text-pink-400 hover:bg-pink-100 dark:hover:bg-pink-900/60 transition-colors cursor-pointer" title="Copy Email">
+                <i id="copy-icon" class="fas fa-copy"></i>
+              </button>
+            </div>
+
+            <!-- Location -->
+            <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-white/70 dark:bg-pink-950/50 border border-pink-200/60 dark:border-pink-900/50">
+              <div class="w-9 h-9 rounded-xl bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300 flex items-center justify-center">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-pink-500 block font-semibold">Work Mode</span>
+                <span class="text-xs sm:text-sm font-semibold text-pink-950 dark:text-pink-100">Available Globally / Remote</span>
+              </div>
+            </div>
+
+            <!-- Response Time -->
+            <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-white/70 dark:bg-pink-950/50 border border-pink-200/60 dark:border-pink-900/50">
+              <div class="w-9 h-9 rounded-xl bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300 flex items-center justify-center">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-pink-500 block font-semibold">Response Speed</span>
+                <span class="text-xs sm:text-sm font-semibold text-pink-950 dark:text-pink-100">Typically within 24 hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Contact Form -->
+      <div class="lg:col-span-7">
+        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="glass-card-pink rounded-3xl p-8 sm:p-9 shadow-xs space-y-4">
+          <h3 class="text-2xl font-bold font-display text-pink-950 dark:text-pink-50">Send a Note 💌</h3>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-pink-900/80 dark:text-pink-200/80 mb-1 uppercase tracking-wider">YOUR NAME</label>
+              <input type="text" id="form-name" required class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-pink-950/60 border border-pink-200/70 dark:border-pink-900/60 text-pink-950 dark:text-pink-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder:text-pink-400/60 transition-all" placeholder="Sophia Loren" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-pink-900/80 dark:text-pink-200/80 mb-1 uppercase tracking-wider">YOUR EMAIL</label>
+              <input type="email" id="form-email" required class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-pink-950/60 border border-pink-200/70 dark:border-pink-900/60 text-pink-950 dark:text-pink-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder:text-pink-400/60 transition-all" placeholder="sophia@example.com" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-pink-900/80 dark:text-pink-200/80 mb-1 uppercase tracking-wider">YOUR MESSAGE</label>
+            <textarea rows="4" id="form-message" required class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-pink-950/60 border border-pink-200/70 dark:border-pink-900/60 text-pink-950 dark:text-pink-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder:text-pink-400/60 transition-all" placeholder="Tell me about your project or say hi..."></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 hover:from-pink-600 hover:to-rose-500 text-white font-semibold text-sm transition-all shadow-md shadow-pink-500/20 cursor-pointer">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 8. FOOTER -->
+  <!-- ======================================================== -->
+  <footer class="border-t border-pink-200/60 dark:border-pink-900/50 py-12 px-6 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="space-y-1">
+        <div class="text-base font-bold font-display text-pink-950 dark:text-pink-50 flex items-center justify-center md:justify-start gap-2">
+          <span>Cha-Cha Bote</span>
+          <span class="text-pink-500 font-serif italic font-normal">· Atelier</span>
+        </div>
+        <p class="text-xs text-pink-800/70 dark:text-pink-300/70">
+          Crafted with pure pink aesthetics, HTML, CSS & JavaScript.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-pink-800/80 dark:text-pink-200/80">
+        <a href="#home" class="hover:text-pink-600 dark:hover:text-pink-300 transition-colors">Home</a>
+        <a href="#about" class="hover:text-pink-600 dark:hover:text-pink-300 transition-colors">About</a>
+        <a href="#projects" class="hover:text-pink-600 dark:hover:text-pink-300 transition-colors">Projects</a>
+        <a href="#certificates" class="hover:text-pink-600 dark:hover:text-pink-300 transition-colors">Certificates</a>
+        <a href="#gallery" class="hover:text-pink-600 dark:hover:text-pink-300 transition-colors">Gallery</a>
+        <a href="#contact" class="hover:text-pink-600 dark:hover:text-pink-300 transition-colors">Contact</a>
+      </div>
+
+      <div class="text-xs text-pink-700/70 dark:text-pink-400/70 font-mono">
+        © 2026 · All rights reserved
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- 9. INTERACTIVE MODAL & FLOATING TOOLS -->
+  <!-- ======================================================== -->
+
+  <!-- Modal Dialog -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-pink-950/45 dark:bg-black/75 backdrop-blur-md animate-in fade-in">
+    <div class="glass-card-pink bg-white/95 dark:bg-[#1c0a18]/95 rounded-3xl max-w-lg w-full p-8 text-center relative shadow-2xl border border-pink-200/80 dark:border-pink-800/60 space-y-4" onclick="event.stopPropagation()">
+      <button onclick="closeModal()" class="absolute top-5 right-5 p-2 rounded-full bg-pink-100/80 dark:bg-pink-900/60 text-pink-700 dark:text-pink-300 hover:bg-pink-200 transition-colors cursor-pointer">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-pink-400 to-rose-300 flex items-center justify-center text-white text-2xl shadow-sm">
+        
+      </div>
+      <h3 id="modalTitle" class="text-2xl font-bold font-display text-pink-950 dark:text-pink-50">Project Title</h3>
+      <p id="modalDesc" class="text-pink-900/80 dark:text-pink-100/80 text-sm leading-relaxed">Project details go here...</p>
+      <button onclick="closeModal()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-400 text-white font-semibold text-xs shadow-xs cursor-pointer hover:opacity-95 transition-opacity">
+        Done Exploring 
+      </button>
+    </div>
+  </div>
+
+  <!-- Notification Toast Message -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 hidden bg-pink-950/90 text-white text-xs sm:text-sm font-semibold px-6 py-3.5 rounded-2xl shadow-2xl z-50 flex items-center gap-2.5 border border-pink-400/40">
+    <i class="fas fa-sparkles text-pink-300"></i>
+    <span id="toast-message">Message sent successfully!</span>
+  </div>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 hidden p-3.5 rounded-full bg-white dark:bg-[#200d1c] border border-pink-200/80 dark:border-pink-800/80 shadow-lg text-pink-600 dark:text-pink-300 z-40 hover:scale-110 active:scale-95 transition-all cursor-pointer">
+    <i class="fas fa-arrow-up text-sm"></i>
+  </button>
+
+  <!-- ======================================================== -->
+  <!-- 10. CONNECTED JAVASCRIPT LOGIC -->
+  <!-- ======================================================== -->
+  <script>
+    // 1. Theme Switcher (Dark/Light mode with persistence)
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    function initTheme() {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        themeIcon.className = 'fas fa-sun text-amber-300';
+      } else {
+        document.documentElement.classList.remove('dark');
+        themeIcon.className = 'fas fa-moon text-pink-600';
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+        themeIcon.className = 'fas fa-moon text-pink-600';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+        themeIcon.className = 'fas fa-sun text-amber-300';
+      }
+    });
+
+    initTheme();
+
+    // 2. Typing Animation Effect in Hero
+    const titles = ['Designer', 'Developer', 'Creator', 'Problem Solver'];
+    let titleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById('typing-text');
+
+    function typeEffect() {
+      const currentTitle = titles[titleIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentTitle.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingElement.textContent = currentTitle.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 45 : 95;
+
+      if (!isDeleting && charIndex === currentTitle.length) {
+        speed = 1800; // Pause at end of word
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        titleIndex = (titleIndex + 1) % titles.length;
+        speed = 350;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    typeEffect();
+
+    // 3. Mouse Follower Glow (Desktop only)
+    const glow = document.getElementById('cursor-glow');
+    window.addEventListener('mousemove', (e) => {
+      glow.style.transform = `translate(${e.clientX - 210}px, ${e.clientY - 210}px)`;
+    });
+
+    // 4. Mobile Menu Drawer Toggle
+    const menuToggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuToggleBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        menuIcon.className = 'fas fa-times text-xl';
+      } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        menuIcon.className = 'fas fa-bars text-xl';
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        menuIcon.className = 'fas fa-bars text-xl';
+      });
+    });
+
+    // 5. Scroll Back to Top Button
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 350) {
+        backToTopBtn.classList.remove('hidden');
+      } else {
+        backToTopBtn.classList.add('hidden');
+      }
+    });
+
+    // 6. Gallery Category Filtering
+    function filterGallery(category, clickedBtn) {
+      const items = document.querySelectorAll('.gallery-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-white', 'dark:bg-pink-900', 'text-pink-950', 'dark:text-pink-50', 'shadow-xs');
+        btn.classList.add('text-pink-700/80', 'dark:text-pink-300/80');
+      });
+
+      clickedBtn.classList.add('bg-white', 'dark:bg-pink-900', 'text-pink-950', 'dark:text-pink-50', 'shadow-xs');
+      clickedBtn.classList.remove('text-pink-700/80', 'dark:text-pink-300/80');
+
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // 7. Interactive Modals
+    function openModal(title, description) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = description;
+      const modal = document.getElementById('projectModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById('projectModal');
+      if (e.target === modal) {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // 8. Contact Form Handling
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      showToast(`Thank you, ${name}! Your note was sent with love`);
+      document.getElementById('contactForm').reset();
+    }
+
+    // 9. Toast Notification System
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = message;
+      toast.classList.remove('hidden');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+
+    // 10. Copy Email to Clipboard
+    function copyEmail() {
+      const email = 'chachabote2@gmail.com';
+      navigator.clipboard.writeText(email);
+      showToast('Email copied to clipboard!');
+      const icon = document.getElementById('copy-icon');
+      icon.className = 'fas fa-check text-emerald-500';
+      setTimeout(() => {
+        icon.className = 'fas fa-copy';
+      }, 2000);
+    }
+
+    // 11. Interactive Love / Sparkles Emitter
+    let loveCount = 128;
+    function triggerLoveParticle(e) {
+      loveCount++;
+      document.getElementById('love-count').innerText = loveCount;
+
+      const emojis = ['', '', '', '', '', '', ''];
+      const container = document.getElementById('particles-container');
+
+      const x = e.clientX || (window.innerWidth / 2);
+      const y = e.clientY || (window.innerHeight / 2);
+
+      for (let i = 0; i < 4; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'floating-sparkle text-2xl';
+        particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        particle.style.left = `${x + (Math.random() * 60 - 30)}px`;
+        particle.style.top = `${y + (Math.random() * 40 - 20)}px`;
+        container.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 1800);
+      }
+      showToast('Sending sparkles & love!');
+    }
+  </script>
+</body>
+</html>
